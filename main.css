@@ -10,7 +10,6 @@ html, body {
 	width:20px; height:28px;
 	margin:0;
 	padding:0;
-	-webkit-transition:.1s linear;
 }
 #canvas {
 	display:inline-block;
@@ -21,7 +20,7 @@ html, body {
 	display:inline-block;
 	position:absolute;
 	width:250px;
-	height:630px;
+	height:100%;
 	margin:0 0 0 5px;
 	padding:10px;
 	resize:none;
