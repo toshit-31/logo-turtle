@@ -1,0 +1,44 @@
+html, body {
+	padding:0;
+	margin:0;
+}
+#turtle{
+	display:block;
+	position:absolute;
+	top:0;
+	left:0;
+	width:20px; height:28px;
+	margin:0;
+	padding:0;
+	-webkit-transition:.1s linear;
+}
+#canvas {
+	display:inline-block;
+	margin:0;
+	padding:0;
+}
+#console {
+	display:inline-block;
+	position:absolute;
+	width:250px;
+	height:630px;
+	margin:0 0 0 5px;
+	padding:10px;
+	resize:none;
+	outline:0;
+	border:1px solid grey;
+	border-radius:3px;
+}
+#command_input {
+	display:block;
+	width:800px;
+	height:40px;
+	line-height:40px;
+	margin:0;
+	padding:0 20px;
+	outline:0;
+	font-size:16px;
+	font-family:Consolas;
+	border:1px solid grey;
+	border-radius:3px;
+}
