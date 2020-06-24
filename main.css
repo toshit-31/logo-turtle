@@ -1,13 +1,20 @@
 html, body {
 	padding:0;
 	margin:0;
+	resize:none;
+}
+.grid {
+	display:grid;
+	grid-template-columns: calc(100% - 250px - 20px) calc(250px + 20px);
+	height:100%;
 }
 #turtle{
 	display:block;
 	position:absolute;
 	top:0;
 	left:0;
-	width:20px; height:28px;
+	width:20px;
+	height:28px;
 	margin:0;
 	padding:0;
 }
@@ -15,12 +22,13 @@ html, body {
 	display:inline-block;
 	margin:0;
 	padding:0;
+	width:100%;
+	height:calc(100% - 60px)
 }
 #console {
 	display:inline-block;
-	position:absolute;
 	width:250px;
-	height:100%;
+	height:calc(100% - 5px - 20px);
 	margin:0 0 0 5px;
 	padding:10px;
 	resize:none;
@@ -30,7 +38,7 @@ html, body {
 }
 #command_input {
 	display:block;
-	width:800px;
+	width:calc(100% - 4px);
 	height:40px;
 	line-height:40px;
 	margin:0;
