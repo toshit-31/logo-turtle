@@ -1,5 +1,4 @@
 window.onload = function _begin(){
-	window.onresize = _begin;
 	var _canvas = document.getElementById("canvas");
 	var _turtleCtx = canvas.getContext("2d");
 	var _turtle = document.getElementById("turtle");
@@ -28,7 +27,13 @@ window.onload = function _begin(){
 	var current = {
 		"x" : 0,
 		"y" : 0
-	}
+	};
+	// fixing the bounds
+	document.body.style.width = window.innerWidth;
+	document.body.style.height = window.innerHeight;
+	_canvas.setAttribute('width', bounds.x+'px')
+	_canvas.setAttribute('height', bounds.y+'px')
+
 	var updateCurrentPos = function(posX, posY){
 		current.x = posX;
 		current.y = posY;
@@ -249,50 +254,37 @@ window.onload = function _begin(){
 						_lineTo(current.x, current.y, eval(_command.val), _command.incVal, 0);
 						_turtleCtx.stroke();
 						_turtleCtx.closePath();
-						return true;
 						break;
 			case "BK" : _turtleCtx.beginPath();
 						_turtleCtx.moveTo(current.x, current.y);
 						_lineTo(current.x, current.y, eval(_command.val), _command.incVal, -1);
 						_turtleCtx.stroke();
 						_turtleCtx.closePath();
-						return true;
 						break;
 			case "RT" : _rightTurn(eval(_command.val));
-						return true;
 						break;
 			case "LT" : _leftTurn(eval(_command.val));
-						return true;
 						break;
 			case "ST" : _turtle.style.visibility = "visible";
-						return true;
 						break;
 			case "HT" : _turtle.style.visibility = "hidden";
-						return true;
 						break;
 			case "PENUP" : penUp();
-							return true;
 							break;
 			case "PENDOWN" : penDown();
-							return true;
 							break;
 			case "PENSIZE" : _changeLineSize(_command.val);
-								return true;
 								break;
 			case "PENCOLOR" : var colorArray = JSON.parse(_command.val);
 								_changeLineColor(colorArray[0], colorArray[1], colorArray[2])
-								return true;
 								break;
 			case "PENERASE" : _changeLineColor(255, 255, 255);
-								return true;
 								break;
 			case "PENNORMAL" :  _changeLineColor(0, 0, 0);
 								_changeLineSize(1);
-								return true;
 								break;
 			case "CLEARSCREEN" : _turtleCtx.clearRect(0, 0, bounds.x, bounds.y)
 									_clearScreen();
-									return true;
 									break;
 			case "REPEAT" : var repeatCommandObj = _repeatProcessor(COMMAND);
 							for (var i=0;i < repeatCommandObj.loop; i++){
@@ -300,11 +292,11 @@ window.onload = function _begin(){
 									_commandListen(repeatCommandObj.cmdArray[j]);
 								}
 							};
-							return true;
 							break;
 			default : _errMsg = _command.name + " is not a valid command"
 						return false;
 		}
+		return true;
 	}
 			
 	_input.addEventListener("keydown", function(e){
@@ -312,9 +304,9 @@ window.onload = function _begin(){
 			var cmd = this.value.toUpperCase();
 			var msgEvt = _commandListen(this.value);
 			if (msgEvt){
-				_console.innerHTML += "> "+cmd+"\n";
+				_console.value += "> "+cmd+"\n";
 			} else {
-				_console.innerHTML += "> "+_errMsg+"\n";
+				_console.value += "> "+_errMsg+"\n";
 			}
 			this.value = "";	
 		} else {
